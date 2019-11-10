@@ -1,22 +1,20 @@
 .App {
-  text-align: center;
+    padding: 2rem;
 }
 
-.App-logo {
-  height: 40vmin;
+.MoneyInput > input {
+    border: 1px solid #000;
+    color: #444;
+    font-size: 2rem;
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.CoinList {
+    padding: 1rem 0;
+    list-style: none;
+    font-size: 1rem;
 }
 
-.App-link {
-  color: #09d3ac;
+.CoinItem + .CoinItem {
+  margin-top: 1rem;
 }
