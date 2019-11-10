@@ -10,7 +10,7 @@ import {COIN_TYPES} from './const/coinType';
 
 function App() {
   const dispatch = useDispatch();
-  const {coins} = useMoneyChangingStore();
+  const {coins, answer} = useMoneyChangingStore();
   const onMoneyInputChange = (value) => {
     dispatch(moneyChange({money: value}));
   };
@@ -18,6 +18,9 @@ function App() {
   return (
     <div className="App">
       <MoneyInput onChange={onMoneyInputChange}/>
+      <p>
+        {answer}
+      </p>
       <CoinList>
         {coins.map( (value, idx) => <CoinItem key={idx} title={COIN_TYPES[idx].toString()} value={value}/>)}
       </CoinList>

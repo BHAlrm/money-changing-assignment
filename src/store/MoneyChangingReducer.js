@@ -1,5 +1,5 @@
 import {createAction, handleActions} from 'redux-actions';
-import {COIN_TYPES} from '../const/coinType';
+import {COIN_TYPE_STRINGS, COIN_TYPES} from '../const/coinType';
 
 // action types
 export const MONEY_CHANGE = '@@coin/MONEY_CHANGE';
@@ -14,10 +14,11 @@ export const reducer = handleActions(
       // business logic to calculate coin output
       const {payload: {money}} = action;
       const coins = calculate(money);
-      return ({coins});
+      const answer = toString(coins);
+      return ({coins, answer});
     }
   },
-  {coins: new Array(COIN_TYPES.length).fill(0)}
+  {coins: new Array(COIN_TYPES.length).fill(0), answer: ''}
 );
 
 // private logic
@@ -44,4 +45,20 @@ function calculate(value) {
   } catch (e) {
     return COIN_TYPES.map(() => 0);
   }
+}
+
+function toString(coins) {
+  const str = 'Your change is ';
+
+  const concatStr = coins.map((value, idx) => {
+    if (value > 0) {
+      return `${value} ${COIN_TYPE_STRINGS[idx]}`;
+    } else {
+      return '';
+    }
+  }).filter((value) => !!value);
+
+  const result = str + concatStr.join(', ');
+  return result === str ? '' : result;
+
 }
